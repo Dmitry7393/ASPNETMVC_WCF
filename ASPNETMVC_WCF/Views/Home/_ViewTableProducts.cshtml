@@ -1,0 +1,26 @@
+﻿
+<script src="~/Scripts/table-products/edit-row.js"></script>
+<div id="partial_view_table_products">
+    @if (ViewBag.listProducts != null)
+    {
+        <table cellpadding="2" cellspacing="2" border="1" id="table_products">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Creation date</th>
+            </tr>
+
+            @foreach (var product in ViewBag.listProducts)
+            {
+            <tr>
+                <td>@product.ProductID</td>
+                <td><div contenteditable><p>@product.ProductName</p></div></td>
+                <td><div contenteditable><p>@product.Description</p></div></td>
+                <td>@product.CreationDate</td>
+                <td> <button type="button" style="height:100%" class="btnRemoveProduct">Delete</button> </td>
+            </tr>
+            }
+        </table>
+    }
+</div>

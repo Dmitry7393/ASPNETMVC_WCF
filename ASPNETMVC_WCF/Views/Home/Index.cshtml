@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="~/Scripts/table-products/delete-product.js"></script>
+    <script src="~/Scripts/table-products/init-table-products.js"></script>
+    
+</head>
+<body onload="init()">
+    @Html.Hidden("urlRemoveProduct", @Url.Action("DeleteProduct", "Home"))
+    @Html.Hidden("urlUpdateListProducts", @Url.Action("UpdateList", "Home"))
+    @Html.Hidden("urlInit", @Url.Action("InitTableWithProducts", "Home"))
+    <div align="center">
+        <span>Enter name of product and description</span>
+        <br />
+        @using (Ajax.BeginForm("AddProduct", new AjaxOptions { UpdateTargetId = "table", OnSuccess = "onSuccess" }))
+        {
+            <input type="text" size="12" id="product_name" name="product_name" />
+            <input type="text" size="20" id="description" name="description" />
+            <input type="submit" value="Add product" />
+        }
+        <br />
+        <div id="table">
+            @Html.Partial("_ViewTableProducts")
+        </div>
+    </div>
+</body>
+</html>
